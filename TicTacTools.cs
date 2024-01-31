@@ -8,7 +8,7 @@ namespace Tic_Tac_Toe
 {
     internal class TicTacTools
     {
-        public void PrintBoard(char[] boardArray)
+        public void PrintBoard(char[] boardArray) //Method for printing the board
         {
             for (int i = 0; i < 3; i++) //Print the first row with the values from the array
             {
@@ -32,7 +32,7 @@ namespace Tic_Tac_Toe
         }
 
 
-        public string GetResults(char[] boardArray)
+        public string GetResults(char[] boardArray) //Method for checking the results
         {
             if ()
         }
