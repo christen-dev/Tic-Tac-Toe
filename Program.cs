@@ -7,12 +7,12 @@
         {
             Console.WriteLine("Welcome to our game of Tic-Tac-Toe!");
 
-            // Define variables 
+            // Define variables. 
             int BOARD_SIZE = 9;
             char[] gameBoard = new char[BOARD_SIZE];
             Array.Fill(gameBoard, '_');
 
-            //Create tic tac toe object
+            //Create tic tac toe object.
             TicTacTools ticTacToe = new TicTacTools(gameBoard);
 
             // Allow the players to enter their names.
@@ -22,6 +22,7 @@
             Console.Write("Enter player two's name: ");
             string playerTwo = Console.ReadLine();
 
+            // Tell the players if they are x or o and provide "How to play" instructions
             Console.WriteLine($"{playerOne} you are x");
             Console.WriteLine($"{playerTwo} you are o");
             Console.WriteLine();
@@ -38,6 +39,7 @@
 
             while (gamePlay)
             {
+                // Print the board as the game is played. 
                 Console.WriteLine("CURRENT BOARD:");
                 ticTacToe.PrintBoard(gameBoard);
 
@@ -51,6 +53,8 @@
                 int moveTwo = Console.ReadLine();
                 gameBoard[moveTwo - 1] = 'o';
 
+                // Show the players the results of the game if there is a winner.
+                // If there is no winner, keep the game going. 
                 char winner = ticTacToe.GetResults(gameBoard);
                 if (winner == 'x')
                 {
@@ -66,6 +70,7 @@
                 }
             }
 
+            // Let the user decide if they want to play again. 
             Console.WriteLine("Game Over. Thanks for playing!");
             Console.Write("Want to play again? (y/n): ");
             string answer = Console.ReadLine();
