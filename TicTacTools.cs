@@ -32,9 +32,35 @@ namespace Tic_Tac_Toe
         }
 
 
-        public string GetResults(char[] boardArray) //Method for checking the results
+        public char GetResults(char[] boardArray) //Method for checking the results
         {
-            if ()
+            char winner = 'n';
+            
+            for (int i = 0; i < 3;i++) 
+            {
+                int startIndex = i * 3;
+
+                if ((boardArray[startIndex] == boardArray[startIndex + 1]) && (boardArray[startIndex] == boardArray[startIndex + 2]))
+                {
+                    winner = boardArray[startIndex];
+                }
+            }
+
+            for (int i = 0; i < 3;i++) 
+            {
+                if ((boardArray[i] == boardArray[i + 3]) && (boardArray[i] == boardArray[i + 6]))
+                {
+                    winner = boardArray[i];
+                }
+            }
+
+            if (((boardArray[0] == boardArray[4]) && (boardArray[0] == boardArray[8])) || 
+                ((boardArray[2] == boardArray[4]) && (boardArray[2] == boardArray[6])))
+            {
+                winner = boardArray[4];
+            }
+
+            return winner;
         }
 
     }
