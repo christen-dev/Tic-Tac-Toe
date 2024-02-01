@@ -43,6 +43,8 @@ namespace Tic_Tac_Toe
                 winner = boardArray[4];
             }
 
+            // returns 'x' or 'o' depending on who won
+            // if it returns 'n', then no one has won yet
             return winner;
         }
 

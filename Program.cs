@@ -11,40 +11,42 @@ internal class Program
     private static void Main(string[] args)
     {
         bool gameOn = false;
-
+        //Loop allows user to play multiple times
         do
         {
             Console.WriteLine("Welcome to our game of Tic-Tac-Toe!");
 
-            // Define variables. 
+            // Define variables 
             int BOARD_SIZE = 9;
             char[] gameBoard = new char[BOARD_SIZE];
             Array.Fill(gameBoard, '_');
             Console.WriteLine("game board array:", gameBoard);
 
-            //Create tic tac toe object.
+            //Create tic tac toe object
             TicTacTools ticTacToe = new TicTacTools();
 
-            // Allow the players to enter their names.
+            // Allow the players to enter their names
             Console.Write("Enter player one's name: ");
             string playerOne = Console.ReadLine();
 
             Console.Write("Enter player two's name: ");
             string playerTwo = Console.ReadLine();
 
-            // Tell the players if they are x or o and provide "How to play" instructions
-            Console.WriteLine($"{playerOne}, you are x");
-            Console.WriteLine($"{playerTwo}, you are o");
-            Console.WriteLine();
-
+            //Game instructions
             Console.WriteLine("How to play:");
             Console.WriteLine("Each player takes a turn placing their x and o\nYour goal is to get 3 in a row");
             Console.WriteLine("'_' means the spot is blank");
             Console.WriteLine("Here are the spots you can place on the board:");
             Console.WriteLine("1 | 2 | 3\n4 | 5 | 6\n7 | 8 | 9");
             Console.WriteLine();
+
+            // Tell the players if they are x or o
+            Console.WriteLine($"{playerOne}, you are x");
+            Console.WriteLine($"{playerTwo}, you are o");
+            Console.WriteLine();
             Console.WriteLine("Let's Play!");
 
+            //Loop to allow user to enter inpur
             while (true)
             {
                 // Print the board as the game is played. 
