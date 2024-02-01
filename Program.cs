@@ -63,6 +63,7 @@ internal class Program
 
                 // check if player 1 won
                 char winner = ticTacToe.GetResults(gameBoard);
+                Console.WriteLine("winner:" + winner);
                 if (winner == 'x')
                 {
                     ticTacToe.PrintBoard(gameBoard);
@@ -78,6 +79,7 @@ internal class Program
                 // Check if player 2 won with that move
                 // If there is no winner, keep the game going 
                 winner = ticTacToe.GetResults(gameBoard);
+                Console.WriteLine("winner:" + winner);
                 if (winner == 'o')
                 {
                     ticTacToe.PrintBoard(gameBoard);
