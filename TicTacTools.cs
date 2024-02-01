@@ -1,34 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Tic_Tac_Toe
 {
     internal class TicTacTools
     {
         public void PrintBoard(char[] boardArray) //Method for printing the board
         {
-            for (int i = 0; i < 3; i++) //Print the first row with the values from the array
-            {
-                Console.WriteLine(boardArray[i] + " | ");
-            }
-
-            Console.WriteLine("---------");
-
-            for (int i = 3; i < 6; i++)
-            {
-                Console.WriteLine(boardArray[i] + " | "); //Second Row
-            }
-
-            Console.WriteLine("---------");
-
-            for (int i = 6; i < 9; i++)
-            {
-                Console.WriteLine(boardArray[i] + " | "); //Third Row
-            }
-
+            Console.WriteLine(" " + boardArray[0] + " | " + boardArray[1] + " | " + boardArray[2]); //First Row
+            Console.WriteLine("-----------");
+            Console.WriteLine(" " + boardArray[3] + " | " + boardArray[4] + " | " + boardArray[5]); //Second Row
+            Console.WriteLine("-----------");
+            Console.WriteLine(" " + boardArray[6] + " | " + boardArray[7] + " | " + boardArray[8]); //Third Row
+            Console.WriteLine("-----------");
+            Console.WriteLine();
         }
 
 

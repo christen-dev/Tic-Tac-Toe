@@ -1,8 +1,17 @@
-﻿internal class Program
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Tic_Tac_Toe;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
         bool gameOn = false;
+
         do
         {
             Console.WriteLine("Welcome to our game of Tic-Tac-Toe!");
@@ -11,9 +20,10 @@
             int BOARD_SIZE = 9;
             char[] gameBoard = new char[BOARD_SIZE];
             Array.Fill(gameBoard, '_');
+            Console.WriteLine("game board array:", gameBoard);
 
             //Create tic tac toe object.
-            TicTacTools ticTacToe = new TicTacTools(gameBoard);
+            TicTacTools ticTacToe = new TicTacTools();
 
             // Allow the players to enter their names.
             Console.Write("Enter player one's name: ");
@@ -23,50 +33,54 @@
             string playerTwo = Console.ReadLine();
 
             // Tell the players if they are x or o and provide "How to play" instructions
-            Console.WriteLine($"{playerOne} you are x");
-            Console.WriteLine($"{playerTwo} you are o");
+            Console.WriteLine($"{playerOne}, you are x");
+            Console.WriteLine($"{playerTwo}, you are o");
             Console.WriteLine();
 
             Console.WriteLine("How to play:");
-            Console.WriteLine("Each player takes turns placing their x and o\nYour goal is to get 3 in a row");
+            Console.WriteLine("Each player takes a turn placing their x and o\nYour goal is to get 3 in a row");
             Console.WriteLine("'_' means the spot is blank");
             Console.WriteLine("Here are the spots you can place on the board:");
             Console.WriteLine("1 | 2 | 3\n4 | 5 | 6\n7 | 8 | 9");
             Console.WriteLine();
             Console.WriteLine("Let's Play!");
 
-            bool gamePlay = true;
-
-            while (gamePlay)
+            while (true)
             {
                 // Print the board as the game is played. 
                 Console.WriteLine("CURRENT BOARD:");
                 ticTacToe.PrintBoard(gameBoard);
 
                 Console.Write($"{playerOne}: Enter where you want to place the X: ");
-                int moveOne = Console.ReadLine();
+                string moveStr1 = Console.ReadLine();
+                int moveOne = Convert.ToInt32(moveStr1);
                 gameBoard[moveOne - 1] = 'x';
 
+                // reprint board after player 1 plays
                 ticTacToe.PrintBoard(gameBoard);
 
-                Console.Write($"{playerTwo}: Enter where you want to place the O: ");
-                int moveTwo = Console.ReadLine();
-                gameBoard[moveTwo - 1] = 'o';
-
-                // Show the players the results of the game if there is a winner.
-                // If there is no winner, keep the game going. 
+                // check if player 1 won
                 char winner = ticTacToe.GetResults(gameBoard);
                 if (winner == 'x')
                 {
+                    ticTacToe.PrintBoard(gameBoard);
                     Console.WriteLine($"{playerOne}, you won!");
-                    ticTacToe.PrintBoard(gameBoard);
-                    gamePlay = false;
+                    break;
                 }
-                else if (winner == 'o')
+
+                Console.Write($"{playerTwo}: Enter where you want to place the O: ");
+                string moveStr2 = Console.ReadLine();
+                int moveTwo = Convert.ToInt32(moveStr2);
+                gameBoard[moveTwo - 1] = 'o';
+
+                // Check if player 2 won with that move
+                // If there is no winner, keep the game going 
+                winner = ticTacToe.GetResults(gameBoard);
+                if (winner == 'o')
                 {
-                    Console.WriteLine($"{playerTwo}, you won!");
                     ticTacToe.PrintBoard(gameBoard);
-                    gamePlay = false;
+                    Console.WriteLine($"{playerTwo}, you won!");
+                    break;
                 }
             }
 
