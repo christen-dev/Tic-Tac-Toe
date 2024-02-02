@@ -33,6 +33,7 @@ internal class Program
             string playerTwo = Console.ReadLine();
 
             //Game instructions
+            Console.WriteLine();
             Console.WriteLine("How to play:");
             Console.WriteLine("Each player takes a turn placing their x and o\nYour goal is to get 3 in a row");
             Console.WriteLine("'_' means the spot is blank");
@@ -46,6 +47,8 @@ internal class Program
             Console.WriteLine();
             Console.WriteLine("Let's Play!");
 
+            int turns = 0;
+
             //Loop to allow user to enter inpur
             while (true)
             {
@@ -53,35 +56,110 @@ internal class Program
                 Console.WriteLine("CURRENT BOARD:");
                 ticTacToe.PrintBoard(gameBoard);
 
-                Console.Write($"{playerOne}: Enter where you want to place the X: ");
-                string moveStr1 = Console.ReadLine();
-                int moveOne = Convert.ToInt32(moveStr1);
-                gameBoard[moveOne - 1] = 'x';
+                while (true)
+                {
+                    Console.Write($"{playerOne}, enter where you want to place the X: ");
+                    string moveStr1 = Console.ReadLine();
+                    int moveOne;
+                    // Check if user input is a valid number
+                    if (int.TryParse(moveStr1, out moveOne))
+                    {
+                        // Check if moveOne is within the valid range (1-9)
+                        if (moveOne >= 1 && moveOne <= 9)
+                        {
+                            // Check for an empty cell
+                            if (gameBoard[moveOne - 1] == '_')
+                            {
+                                gameBoard[moveOne - 1] = 'x';
+                                turns++;
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Please enter a number with an empty spot");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please enter a valid integer between 1 and 9");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a valid integer between 1 and 9");
+                    }
+                }
 
                 // reprint board after player 1 plays
+                Console.WriteLine("CURRENT BOARD:");
                 ticTacToe.PrintBoard(gameBoard);
 
                 // check if player 1 won
                 char winner = ticTacToe.GetResults(gameBoard);
-                Console.WriteLine("winner:" + winner);
+                
                 if (winner == 'x')
                 {
+                    Console.WriteLine("FINAL BOARD:");
                     ticTacToe.PrintBoard(gameBoard);
                     Console.WriteLine($"{playerOne}, you won!");
                     break;
                 }
+                else if ((winner == 'n') && (turns == 9)) {
+                    Console.WriteLine("FINAL BOARD:");
+                    ticTacToe.PrintBoard(gameBoard);
+                    Console.WriteLine("It was a tie!");
+                    break;
+                }
 
-                Console.Write($"{playerTwo}: Enter where you want to place the O: ");
-                string moveStr2 = Console.ReadLine();
-                int moveTwo = Convert.ToInt32(moveStr2);
-                gameBoard[moveTwo - 1] = 'o';
+                //print turns
+                Console.WriteLine("turns: " + turns);
+
+                // allow player 2 to enter input
+                while (true)
+                {
+                    Console.Write($"{playerTwo}, enter where you want to place the O: ");
+                    string moveStr2 = Console.ReadLine();
+                    int moveTwo;
+                    // Check if user input is a valid number
+                    if (int.TryParse(moveStr2, out moveTwo))
+                    {
+                        // Check if moveOne is within the valid range (1-9)
+                        if (moveTwo >= 1 && moveTwo <= 9)
+                        {
+                            // Check for an empty cell
+                            if (gameBoard[moveTwo - 1] == '_')
+                            {
+                                gameBoard[moveTwo - 1] = 'o';
+                                turns++;
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Please enter a number with an empty spot");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please enter a valid integer between 1 and 9");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a valid integer between 1 and 9");
+                    }
+                }
+
+                //increase number of turns after player 2 goes
+                Console.WriteLine("turns: " + turns);
 
                 // Check if player 2 won with that move
-                // If there is no winner, keep the game going 
+                // If there is no winner, keep the game going
+                Console.WriteLine("CURRENT BOARD:");
                 winner = ticTacToe.GetResults(gameBoard);
-                Console.WriteLine("winner:" + winner);
+                
                 if (winner == 'o')
                 {
+                    Console.WriteLine("FINAL BOARD:");
                     ticTacToe.PrintBoard(gameBoard);
                     Console.WriteLine($"{playerTwo}, you won!");
                     break;
